@@ -1,13 +1,16 @@
 from django.db import models
 
+
 class Post(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
     author = models.CharField(max_length=100) # Simplified author field
 
+
     def __str__(self):
         return self.title
+
 
 class Author(models.model):
     name = models.CharField(max_length=100)
@@ -15,6 +18,7 @@ class Author(models.model):
 
     def __str__(self):
         return self.name
+
 
 class Tag(models.Model):
     name = models.CharField(max_lenght=50)
@@ -31,6 +35,7 @@ class BlogPost(models.Model):
     views = models.IntegerField(default=0)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     tags = models.ManyToManyField(Tag)
+
 
     def __str__(self):
         return self.title
